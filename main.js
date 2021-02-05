@@ -142,4 +142,4 @@ client.on('message', message => {
 
 
 
-client.login('ODA2NjgzMjM0NzQxNzgwNDgw.YBtATg.iCY7VQuI4hmwDzMF2yIdKnuhbec');
+client.login('putamadre marge');
