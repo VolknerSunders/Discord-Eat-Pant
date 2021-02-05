@@ -1,7 +1,12 @@
 const { randomBytes } = require('crypto');
 const Discord = require('discord.js');
+const prefixHandler = require('./prefix')
 
-const prefix = '|';
+let prefix = '|'
+
+prefixHandler.readPrefix().then(res => {
+    prefix = res.name ? res.name : prefix
+});
 
 const client = new Discord.Client();
 
@@ -99,6 +104,13 @@ client.on('message', message =>{
         });
         
         
+    } else if (command === 'prefix') {
+        if (args.length > 0 && args[0]) {
+            prefix = args[0]
+            prefixHandler.changePrefix(args[0])
+            console.log('Updating prefix')
+            message.reply(`El nuevo prefijo es ${prefix}`)
+        }
     }
 })
 
@@ -139,6 +151,7 @@ client.on('message', message => {
                                 );
     }
   });
+
 
 
 
