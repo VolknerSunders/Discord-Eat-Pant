@@ -1,16 +1,12 @@
-const fs = require('fs')
+const mongodb = require('./mongo')
 
 const changePrefix = (prefix) => {
-    fs.writeFile('./config', prefix, 'utf8')
+    mongodb.insertOneDocument({ name: prefix }, 'prefix')
 }
 
-const readPrefix = async () => {
-    fs.readFile('./config', 'utf8', function(err, contents) {
-        return contents
-    })
-}
+const readPrefix = () => mongodb.getLastDocument('prefix')
 
-export {
+module.exports = {
     changePrefix,
     readPrefix
 }
