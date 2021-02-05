@@ -139,4 +139,4 @@ client.on('message', message => {
 
 
 
-client.login('ODA2NjgzMjM0NzQxNzgwNDgw.YBtATg.QaLcB_ph9laH1YhZ4lAnfN9HP4I');
+client.login('agrega tu token,basura');
