@@ -1,7 +1,10 @@
 const { randomBytes } = require('crypto');
 const Discord = require('discord.js');
+const prefixHandler = require('./prefix')
 
-const prefix = '|';
+let prefixFile = await prefixHandler.readPrefix()
+
+let prefix = (prefixFile  && prefixFile !== '') ? prefixFile : '|'
 
 const client = new Discord.Client();
 
@@ -96,6 +99,11 @@ client.on('message', message =>{
         });
         
         
+    } else if (command === 'prefix') {
+        if (args.length < 0 && args[0] ==! '') {
+            prefix = args[0]
+            prefixHandler.changePrefix(args[0])
+        }
     }
 })
 
