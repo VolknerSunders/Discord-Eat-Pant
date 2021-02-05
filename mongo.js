@@ -2,8 +2,8 @@ const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
 
 // Connection URL
-const url = '' // TODO: Add to env.
-const dbName = 'bot'
+const url = process.env.MONGODB_URL || ''
+const dbName = process.env.MONGODB_DATABASE | 'bot'
 
 /**
  * 
@@ -93,10 +93,10 @@ const getDocuments = (collectionName, query = {}, opts = {}) => new Promise((res
       
         const collection = db.collection(collectionName)
 
-        let document = collection.find(query, opts).toArray()
+        let documents = collection.find(query, opts).toArray()
         client.close()
 
-        return resolve(document)
+        return resolve(documents)
     })
 })
 

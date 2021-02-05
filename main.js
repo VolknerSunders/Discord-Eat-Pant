@@ -1,6 +1,8 @@
 const { randomBytes } = require('crypto');
 const Discord = require('discord.js');
 const prefixHandler = require('./prefix')
+const episodes = require('./episodes')
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN || ''
 
 let prefix = '|'
 
@@ -28,7 +30,13 @@ client.on('message', message =>{
     message.reply(`Pong! Este mensaje tuvo una latencia de ${timeTaken}ms.`);
     }else if(command === 'c'){
         message.channel.send('dura');
-    }else if (command === "rol") {
+    } else if(command === 'roll') {
+        const numArgs = args.map(x => parseInt(x));
+
+        episodes.getEpisodeByRoll(numArgs)
+        .then(res => message.reply(`van a ver el episodio **${res.season}x${res.number_in_season}** llamado *"${res.title}"*.\n${res.image_url}`))
+        .catch(err => message.reply(err.error))
+    } else if (command === "rol") {
         const numArgs = args.map(x => parseInt(x));
         if(numArgs > 8){
             message.reply('chingate')
@@ -155,4 +163,4 @@ client.on('message', message => {
 
 
 
-client.login('putamadre marge');
+client.login(DISCORD_TOKEN);
