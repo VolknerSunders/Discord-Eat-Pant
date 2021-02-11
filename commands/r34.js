@@ -2,6 +2,7 @@ module.exports = {
     name : 'r34',
     description : "Este te busca una imagen al azar del nombre que pusiste despues del comando en la pagina rule34.xxx",
     execute(message,args){
+        if(!args.length) return message.channel.send('Ocupas mandar nombre de un personaje')
         const https = require('https');
         const xml2js = require('xml2js');
         const parser = new xml2js.Parser({ attrkey: "ATTR" });
