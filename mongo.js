@@ -2,7 +2,11 @@ const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
 
 // Connection URL
-const url = process.env.MONGODB_URL || ''
+//const url = process.env.MONGODB_URL || ''
+
+const bdToken = require('./tokens');
+const url = bdToken.tokenBd;
+console.log(url)
 const dbName = process.env.MONGODB_DATABASE | 'bot'
 
 /**
