@@ -61,7 +61,7 @@ client.on('message', message =>{
             message.reply(`El nuevo prefijo es ${prefix}`)
         }
     }else if (command === 'avatar') {
-        client.commands.get('avatar').execute(message,args);
+        client.commands.get('avatar').execute(client,message,args);
     }else if (command === 'play') {
         client.commands.get('play').execute(message,args);
     }else if (command === 'leave') {
